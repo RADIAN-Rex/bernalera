@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finca Agroturística - Paraíso Orgánico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Configuración de colores personalizados del proyecto
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fincaBlue: '#0284c7',      // Azul base (agua natural)
+                        fincaAqua: '#38bdf8',      // Aguamarina complementario
+                        cacaoGreen: '#16a34a',    // Verde hoja de cacao
+                        cacaoRed: '#dc2626',      // Rojo fruto maduro
+                        cacaoYellow: '#eab308',   // Amarillo bacao
+                        navWine: '#6A1626',       // Color institucional solicitado
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .view { display: none; }
+        .view.active { display: block; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans min-h-screen flex flex-col selection:bg-fincaAqua selection:text-white">
+
+    <header class="bg-[#6A1626]/85 backdrop-blur-md sticky top-0 z-40 shadow-md border-b border-red-950/20 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" onclick="switchView('inicio')" class="flex items-center space-x-2 group">
+                <img src="./logo.jpeg" alt="Logo Finca La Bernalera" class="h-16 w-auto object-contain">
+                <span class="text-xl font-black tracking-tight text-white">Jadin La Bernalera</span>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-6 font-medium">
+                <a href="#" onclick="switchView('inicio')" id="nav-inicio" class="text-fincaAqua transition-colors py-2 border-b-2 border-fincaAqua">Inicio</a>
+                <a href="#" onclick="switchView('servicios')" id="nav-servicios" class="text-stone-200 hover:text-fincaAqua transition-colors py-2 border-b-2 border-transparent">Planes y Servicios</a>
+                <a href="#" onclick="switchView('galeria')" id="nav-galeria" class="text-stone-200 hover:text-fincaAqua transition-colors py-2 border-b-2 border-transparent">Galería de Álbumes</a>
+                <a href="#" onclick="switchView('como-llegar')" id="nav-como-llegar" class="text-stone-200 hover:text-fincaAqua transition-colors py-2 border-b-2 border-transparent">Cómo Llegar</a>
+            </nav>
+
+            <div class="hidden md:flex items-center">
+                <a href="https://es-l.airbnb.com/rooms/1620304824465078270?guests=1&adults=1&s=67&unique_share_id=f5f56c6a-ce53-4ea3-a1d0-06197d24155a" target="_blank" class="inline-flex items-center space-x-2 bg-gradient-to-r from-fincaBlue to-fincaAqua text-white px-5 py-2.5 rounded-full font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all text-sm">
+                    <i data-lucide="home" class="w-4 h-4"></i>
+                    <span>Reservar Ahora</span>
+                </a>
+            </div>
+
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-stone-200 hover:text-fincaAqua transition-colors">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-[#6A1626] border-b border-red-950 px-4 pt-2 pb-4 space-y-2">
+            <a href="#" onclick="switchView('inicio'); toggleMobileMenu()" class="block px-3 py-2 rounded-lg bg-red-950 font-medium text-fincaAqua">Inicio</a>
+            <a href="#" onclick="switchView('servicios'); toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-red-950/50 font-medium text-stone-200">Planes y Servicios</a>
+            <a href="#" onclick="switchView('galeria'); toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-red-950/50 font-medium text-stone-200">Galería de Álbumes</a>
+            <a href="#" onclick="switchView('como-llegar'); toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-red-950/50 font-medium text-stone-200">Cómo Llegar</a>
+            <a href="https://es-l.airbnb.com/rooms/1620304824465078270?guests=1&adults=1&s=67&unique_share_id=f5f56c6a-ce53-4ea3-a1d0-06197d24155a" target="_blank" class="block text-center bg-fincaBlue text-white py-2.5 rounded-lg font-semibold shadow-md">Reservar Ahora (Airbnb)</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <div id="view-inicio" class="view active animate-fade-in">
+        <section class="relative bg-[url('./head.jpeg')] bg-cover bg-center py-24 lg:py-36 overflow-hidden">
+                <div class="absolute inset-0 bg-white/30 backdrop-blur-[2px]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 text-center lg:text-left">
+                        <span class="inline-flex items-center space-x-2 bg-white px-4 py-1.5 rounded-full text-xs font-semibold text-cacaoGreen shadow-sm border border-stone-200">
+                            <span class="w-2 h-2 rounded-full bg-cacaoYellow animate-pulse"></span>
+                            <span>¡Vive una experiencia orgánica real!</span>
+                        </span>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-stone-900 leading-tight">
+                            Vive la vida <br class="hidden sm:inline">En <span class="text-fincaBlue"> La Bernalera</span>
+                        </h1>
+                        <p class="text-lg text-stone-600 max-w-xl mx-auto lg:mx-0">
+                            Descubre el aroma del auténtico cacao, relájate en nuestras aguas cristalinas y conecta con las raíces de la tierra en un entorno natural único.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <button onclick="switchView('servicios')" class="w-full sm:w-auto bg-cacaoGreen hover:bg-emerald-700 text-white px-8 py-3.5 rounded-xl font-bold shadow-md hover:shadow-lg transition-all text-center">
+                                Explorar Experiencias
+                            </button>
+                            <a href="#historia" class="w-full sm:w-auto bg-white hover:bg-stone-50 text-stone-800 px-8 py-3.5 rounded-xl font-bold border border-stone-200 shadow-sm transition-all text-center">
+                                Nuestra Historia
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-extrabold text-stone-900 tracking-tight sm:text-4xl">Nuestros Planes </h2>
+                    <p class="mt-4 text-lg text-stone-600">Opciones con todo para disfrutar al máximo sin sorpresas en tu presupuesto.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl shadow-md border-2 border-transparent hover:border-[#6A1626] overflow-hidden transition-all duration-300 flex flex-col group">
+                        <img src="./pisina.jpeg" alt="Pasadía" class="w-full h-48 object-cover">
+                        <div class="p-8 border-b border-stone-100 bg-stone-50/50">
+                            <span class="text-xs font-bold text-fincaBlue uppercase tracking-widest bg-sky-50 px-3 py-1 rounded-full">Favorito de los niños</span>
+                            <h3 class="text-2xl font-bold text-stone-900 mt-4">pisina natural</h3>
+                            <p class="mt-6 flex items-baseline text-stone-900">
+                                <span class="text-5xl font-extrabold tracking-tight">$35.000</span>
+                                <span class="ml-1 text-xl font-semibold text-stone-500">/persona</span>
+                            </p>
+                        </div>
+                        <div class="p-8 flex-grow flex flex-col justify-between">
+                            <ul class="space-y-4 text-sm text-stone-600 mb-8">
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> Acceso a la pisina natural</li>
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> zona de descanso</li>
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> avistamiento de animales silvestres</li>
+                            </ul>
+                            <a href="https://es-l.airbnb.com/rooms/1620304824465078270?guests=1&adults=1&s=67&unique_share_id=f5f56c6a-ce53-4ea3-a1d0-06197d24155a" target="_blank" class="block w-full text-center bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-all">Reservar Ahora</a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-xl border-2 border-transparent hover:border-[#6A1626] overflow-hidden relative transition-all duration-300 flex flex-col group">
+                        <img src="./pisinanoche.jpeg" alt="Hospedaje" class="w-full h-48 object-cover">
+                        <div class="p-8 border-b border-stone-100 bg-emerald-50/20">
+                            <span class="text-xs font-bold text-cacaoGreen uppercase tracking-widest bg-emerald-100 px-3 py-1 rounded-full">Experiencia Maxima</span>
+                            <h3 class="text-2xl font-bold text-stone-900 mt-4">Inmersión y Hospedaje</h3>
+                            <p class="mt-6 flex items-baseline text-stone-900">
+                                <span class="text-5xl font-extrabold tracking-tight">$120.000</span>
+                                <span class="ml-1 text-xl font-semibold text-stone-500">/persona/noche</span>
+                            </p>
+                        </div>
+                        <div class="p-8 flex-grow flex flex-col justify-between">
+                            <ul class="space-y-4 text-sm text-stone-600 mb-8">
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> beneficios de todos los planes anteriores</li>
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> Casa con vista a los jardines</li>
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> comidas incluidas</li>
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> acceso a la fogata</li>
+                            </ul>
+                            <a href="https://es-l.airbnb.com/rooms/1620304824465078270?guests=1&adults=1&s=67&unique_share_id=f5f56c6a-ce53-4ea3-a1d0-06197d24155a" target="_blank" class="block w-full text-center bg-cacaoGreen hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-md transition-all">Reservar Ahora</a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-md border-2 border-transparent hover:border-[#6A1626] overflow-hidden transition-all duration-300 flex flex-col group">
+                        <img src="./cacao.jpeg" alt="Aventura" class="w-full h-48 object-cover">
+                        <div class="p-8 border-b border-stone-100 bg-stone-50/50">
+                            <span class="text-xs font-bold text-cacaoYellow uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">Para Aventureros</span>
+                            <h3 class="text-2xl font-bold text-stone-900 mt-4">Aventura de Campo</h3>
+                            <p class="mt-6 flex items-baseline text-stone-900">
+                                <span class="text-5xl font-extrabold tracking-tight">$55.000</span>
+                                <span class="ml-1 text-xl font-semibold text-stone-500">/persona</span>
+                            </p>
+                        </div>
+                        <div class="p-8 flex-grow flex flex-col justify-between">
+                            <ul class="space-y-4 text-sm text-stone-600 mb-8">
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> beneficio del plan anterior</li>
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i>tour guiado por el cultivo de cacao</li>
+                                <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-cacaoGreen flex-shrink-0"></i> acceso a la zona de pesca</li>
+                            </ul>
+                            <a href="https://es-l.airbnb.com/rooms/1620304824465078270?guests=1&adults=1&s=67&unique_share_id=f5f56c6a-ce53-4ea3-a1d0-06197d24155a" target="_blank" class="block w-full text-center bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-all">Reservar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="historia" class="py-24 bg-stone-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center space-x-2 text-cacaoGreen font-bold tracking-wider text-sm uppercase">
+                            <i data-lucide="history"></i>
+                            <span>Nuestras Raíces e Impacto</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-black text-stone-900 tracking-tight">Nuestra Historia </h2>
+                        <div class="text-stone-600 leading-relaxed space-y-4 text-base">
+                            <p>Nacimos en 2024 cuando remodelamos la bernalera para convertirla en un espacio de agroturismo y tiempo de calidad familiar,ya que fue comprada por nuetro padre que en paz descanse con mucho sudor y exfuerzo hace mas de 30 años y para conmemorarlo creamos este espacio para que las familias se reunan y se divientan y descansen .</p>
+                            <p>la visión es ser un referente en agroturismo sostenible y un lugar de liberdad y descanso para el 2028.</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md h-[400px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="./family.jpeg" alt="Naturaleza de la finca" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-stone-900 tracking-tight sm:text-4xl">La Bernalera</h2>
+                </div>
+                <div class="relative max-w-4xl mx-auto h-[300px] sm:h-[450px] overflow-hidden rounded-3xl shadow-2xl group border-4 border-white bg-stone-200">
+                    <div id="main-track" class="flex h-full w-full transition-transform duration-500 ease-out">
+                        <div class="w-full h-full flex-shrink-0"><img src="./dog.jpeg" class="w-full h-full object-cover"></div>
+                        <div class="w-full h-full flex-shrink-0"><img src="./fogata.jpeg" class="w-full h-full object-cover"></div>
+                        <div class="w-full h-full flex-shrink-0"><img src="./juanita.jpeg" class="w-full h-full object-cover"></div>
+                        <div class="w-full h-full flex-shrink-0"><img src="./pisinan.jpeg" class="w-full h-full object-cover"></div>
+                        <div class="w-full h-full flex-shrink-0"><img src="./vista.jpeg" class="w-full h-full object-cover"></div>
+                    </div>
+                    <button onclick="moveSlide('main', 'prev')" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 text-stone-900 p-3 rounded-full shadow-md"><i data-lucide="chevron-left"></i></button>
+                    <button onclick="moveSlide('main', 'next')" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 text-stone-900 p-3 rounded-full shadow-md"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-servicios" class="view animate-fade-in">
+            <section class="relative bg-[url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center py-20 text-white text-center">
+                <div class="absolute inset-0 bg-stone-950/60 backdrop-blur-[1px]"></div>
+                <div class="max-w-4xl mx-auto px-4 relative z-10">
+                    <h1 class="text-4xl font-black mb-4">Catálogo Completo de Servicios</h1>
+                    <p class="text-xl text-sky-100">Explora todo lo que puedes hacer, saborear y adquirir.</p>
+                </div>
+            </section>
+
+            <div class="border-b border-stone-200 bg-white sticky top-20 z-30 shadow-sm">
+                <div class="max-w-4xl mx-auto px-4 flex justify-around">
+                    <button onclick="switchServiceTab('planes')" id="tab-planes" class="py-4 px-4 font-bold border-b-4 border-cacaoGreen text-cacaoGreen flex items-center gap-2"><i data-lucide="compass"></i> Planes</button>
+                    <button onclick="switchServiceTab('comidas')" id="tab-comidas" class="py-4 px-4 font-bold border-b-4 border-transparent text-stone-500 hover:text-fincaBlue flex items-center gap-2"><i data-lucide="utensils"></i> Comidas</button>
+                    <button onclick="switchServiceTab('ventas')" id="tab-ventas" class="py-4 px-4 font-bold border-b-4 border-transparent text-stone-500 hover:text-fincaBlue flex items-center gap-2"><i data-lucide="shopping-bag"></i> Ventas</button>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div id="service-planes" class="service-tab-content space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=500&q=80" class="w-full h-44 object-cover"><div class="p-5"><h4 class="font-bold text-lg">1. Tour del Cacao</h4><p class="text-stone-600 text-sm mt-1">Cosecha e industrialización artesanal del bacao.</p></div></div>
+                        <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=500&q=80" class="w-full h-44 object-cover"><div class="p-5"><h4 class="font-bold text-lg">2. Mariposario</h4><p class="text-stone-600 text-sm mt-1">Avistamiento de más de 15 especies exóticas libres.</p></div></div>
+                        <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=500&q=80" class="w-full h-44 object-cover"><div class="p-5"><h4 class="font-bold text-lg">3. Orquideario Silvestre</h4><p class="text-stone-600 text-sm mt-1">Exhibición botánica guiada de flores exóticas.</p></div></div>
+                        <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=500&q=80" class="w-full h-44 object-cover"><div class="p-5"><h4 class="font-bold text-lg">4. Avistamiento de Aves</h4><p class="text-stone-600 text-sm mt-1">Senderismo matutino de observación de fauna de montaña.</p></div></div>
+                        <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden"><img src="https://images.unsplash.com/photo-1530260626688-0482e9315bb1?auto=format&fit=crop&w=500&q=80" class="w-full h-44 object-cover"><div class="p-5"><h4 class="font-bold text-lg">5. Senderismo Nocturno</h4><p class="text-stone-600 text-sm mt-1">Caminata mística guiada con antorchas ecológicas.</p></div></div>
+                    </div>
+                </div>
+
+                <div id="service-comidas" class="service-tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl border p-4 flex gap-4 items-center"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=150&q=80" class="w-20 h-20 rounded-lg object-cover"><div><h4 class="font-bold">1. Desayuno Criollo</h4><p class="text-sm text-stone-500">Huevos orgánicos, arepa nativa y chocolate de taza. - $12.000</p></div></div>
+                    <div class="bg-white rounded-xl border p-4 flex gap-4 items-center"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=150&q=80" class="w-20 h-20 rounded-lg object-cover"><div><h4 class="font-bold">2. Sancocho de Gallina</h4><p class="text-sm text-stone-500">Cocinada a fuego lento con leña de árboles caídos. - $22.000</p></div></div>
+                    <div class="bg-white rounded-xl border p-4 flex gap-4 items-center"><img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=150&q=80" class="w-20 h-20 rounded-lg object-cover"><div><h4 class="font-bold">3. Picada Campestre</h4><p class="text-sm text-stone-500">Carnes seleccionadas de la zona y plátano maduro hacedero. - $45.000</p></div></div>
+                    <div class="bg-white rounded-xl border p-4 flex gap-4 items-center"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=150&q=80" class="w-20 h-20 rounded-lg object-cover"><div><h4 class="font-bold">4. Trucha al Carbón</h4><p class="text-sm text-stone-500">Pesca del día sazonada con finas hierbas de la huerta. - $28.000</p></div></div>
+                    <div class="bg-white rounded-xl border p-4 flex gap-4 items-center"><img src="https://images.unsplash.com/photo-1605000797499-95a51c7769ae?auto=format&fit=crop&w=150&q=80" class="w-20 h-20 rounded-lg object-cover"><div><h4 class="font-bold">5. Volcán de Chocolate Fino</h4><p class="text-sm text-stone-500">Postre caliente de cacao líquido premium con helado. - $8.000</p></div></div>
+                </div>
+
+                <div id="service-ventas" class="service-tab-content hidden grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="bg-white border rounded-xl p-3 flex flex-col justify-between"><img src="https://images.unsplash.com/photo-1548907040-4d42b52145ca?auto=format&fit=crop&w=200&q=80" class="w-full h-32 object-cover rounded-lg"><h5 class="font-bold text-sm mt-2">1. Chocolate Puro 100%</h5><button onclick="addToCartMock('Chocolate')" class="mt-2 w-full py-1 bg-cacaoYellow text-xs font-bold rounded">Pedir - $8.500</button></div>
+                    <div class="bg-white border rounded-xl p-3 flex flex-col justify-between"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=200&q=80" class="w-full h-32 object-cover rounded-lg"><h5 class="font-bold text-sm mt-2">2. Miel Silvestre</h5><button onclick="addToCartMock('Miel')" class="mt-2 w-full py-1 bg-cacaoYellow text-xs font-bold rounded">Pedir - $15.000</button></div>
+                    <div class="bg-white border rounded-xl p-3 flex flex-col justify-between"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=200&q=80" class="w-full h-32 object-cover rounded-lg"><h5 class="font-bold text-sm mt-2">3. Café de Origen</h5><button onclick="addToCartMock('Café')" class="mt-2 w-full py-1 bg-cacaoYellow text-xs font-bold rounded">Pedir - $18.000</button></div>
+                    <div class="bg-white border rounded-xl p-3 flex flex-col justify-between"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=200&q=80" class="w-full h-32 object-cover rounded-lg"><h5 class="font-bold text-sm mt-2">4. Licor de Cacao</h5><button onclick="addToCartMock('Licor')" class="mt-2 w-full py-1 bg-cacaoYellow text-xs font-bold rounded">Pedir - $25.000</button></div>
+                    <div class="bg-white border rounded-xl p-3 flex flex-col justify-between"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=200&q=80" class="w-full h-32 object-cover rounded-lg"><h5 class="font-bold text-sm mt-2">5. Mermelada Orgánica</h5><button onclick="addToCartMock('Mermelada')" class="mt-2 w-full py-1 bg-cacaoYellow text-xs font-bold rounded">Pedir - $7.000</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-galeria" class="view animate-fade-in">
+            <section class="relative bg-[url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center py-20 text-white text-center">
+                <div class="absolute inset-0 bg-stone-950/60 backdrop-blur-[1px]"></div>
+                <div class="max-w-4xl mx-auto px-4 relative z-10">
+                    <h1 class="text-4xl font-black mb-4">Galería Fotográfica Oficial</h1>
+                    <p class="text-xl text-sky-100">Explora de manera dinámica nuestros 6 álbumes interactivos de alta calidad.</p>
+                </div>
+            </section>
+
+            <div class="max-w-4xl mx-auto px-4 py-12 space-y-16">
+                <div class="space-y-4 bg-white p-6 rounded-3xl border border-stone-200 shadow-sm">
+                    <h3 class="text-xl font-bold border-l-4 border-cacaoGreen pl-3 text-stone-900">1. Mariposario de Conservación</h3>
+                    <div class="relative h-[250px] sm:h-[380px] overflow-hidden rounded-2xl bg-stone-100">
+                        <div id="album1-track" class="flex h-full w-full transition-transform duration-500 ease-out">
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1500937386664-56d15ef375c3?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1530260626688-0482e9315bb1?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                        </div>
+                        <button onclick="moveSlide('album1', 'prev')" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-left"></i></button>
+                        <button onclick="moveSlide('album1', 'next')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-white p-6 rounded-3xl border border-stone-200 shadow-sm">
+                    <h3 class="text-xl font-bold border-l-4 border-cacaoGreen pl-3 text-stone-900">2. Orquideario y Flores Silvestres</h3>
+                    <div class="relative h-[250px] sm:h-[380px] overflow-hidden rounded-2xl bg-stone-100">
+                        <div id="album2-track" class="flex h-full w-full transition-transform duration-500 ease-out">
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                        </div>
+                        <button onclick="moveSlide('album2', 'prev')" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-left"></i></button>
+                        <button onclick="moveSlide('album2', 'next')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-white p-6 rounded-3xl border border-stone-200 shadow-sm">
+                    <h3 class="text-xl font-bold border-l-4 border-cacaoGreen pl-3 text-stone-900">3. Cosecha y Procesamiento de Cacao</h3>
+                    <div class="relative h-[250px] sm:h-[380px] overflow-hidden rounded-2xl bg-stone-100">
+                        <div id="album3-track" class="flex h-full w-full transition-transform duration-500 ease-out">
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1605000797499-95a51c7769ae?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1548907040-4d42b52145ca?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                        </div>
+                        <button onclick="moveSlide('album3', 'prev')" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-left"></i></button>
+                        <button onclick="moveSlide('album3', 'next')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-white p-6 rounded-3xl border border-stone-200 shadow-sm">
+                    <h3 class="text-xl font-bold border-l-4 border-cacaoGreen pl-3 text-stone-900">4. Cabañas de Madera y Zona Glamping</h3>
+                    <div class="relative h-[250px] sm:h-[380px] overflow-hidden rounded-2xl bg-stone-100">
+                        <div id="album4-track" class="flex h-full w-full transition-transform duration-500 ease-out">
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1530260626688-0482e9315bb1?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1500937386664-56d15ef375c3?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                        </div>
+                        <button onclick="moveSlide('album4', 'prev')" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-left"></i></button>
+                        <button onclick="moveSlide('album4', 'next')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-white p-6 rounded-3xl border border-stone-200 shadow-sm">
+                    <h3 class="text-xl font-bold border-l-4 border-cacaoGreen pl-3 text-stone-900">5. Cascadas y Piscinas Naturales</h3>
+                    <div class="relative h-[250px] sm:h-[380px] overflow-hidden rounded-2xl bg-stone-100">
+                        <div id="album5-track" class="flex h-full w-full transition-transform duration-500 ease-out">
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1530260626688-0482e9315bb1?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1500937386664-56d15ef375c3?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                        </div>
+                        <button onclick="moveSlide('album5', 'prev')" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-left"></i></button>
+                        <button onclick="moveSlide('album5', 'next')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-white p-6 rounded-3xl border border-stone-200 shadow-sm">
+                    <h3 class="text-xl font-bold border-l-4 border-cacaoGreen pl-3 text-stone-900">6. Senderos de Montaña y Mirador</h3>
+                    <div class="relative h-[250px] sm:h-[380px] overflow-hidden rounded-2xl bg-stone-100">
+                        <div id="album6-track" class="flex h-full w-full transition-transform duration-500 ease-out">
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1530260626688-0482e9315bb1?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                            <div class="w-full h-full flex-shrink-0"><img src="https://images.unsplash.com/photo-1500937386664-56d15ef375c3?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover"></div>
+                        </div>
+                        <button onclick="moveSlide('album6', 'prev')" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-left"></i></button>
+                        <button onclick="moveSlide('album6', 'next')" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-como-llegar" class="view animate-fade-in">
+            <section class="relative bg-[url('https://images.unsplash.com/photo-1524661135339-9140b0078723?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center py-20 text-white text-center">
+                <div class="absolute inset-0 bg-stone-950/60 backdrop-blur-[1px]"></div>
+                <div class="max-w-4xl mx-auto px-4 relative z-10">
+                    <h1 class="text-4xl font-black mb-4">Central de Guía Vial GPS</h1>
+                    <p class="text-xl text-sky-100">Indicaciones completas multimedia para acceder de manera rápida y segura.</p>
+                </div>
+            </section>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <div class="lg:col-span-4 flex flex-col items-center space-y-4">
+                        <h3 class="text-lg font-bold text-stone-900 flex items-center gap-2">
+                            <i data-lucide="smartphone" class="text-cacaoRed"></i> Video Guía de Acceso
+                        </h3>
+                        <div class="relative aspect-[9/16] w-full max-w-[270px] rounded-3xl overflow-hidden shadow-2xl border-4 border-stone-900 bg-stone-950">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Ruta de acceso" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8 space-y-6">
+                        <h3 class="text-lg font-bold text-stone-900 flex items-center gap-2">
+                            <i data-lucide="map" class="text-fincaBlue"></i> Mapa de Ruta Rectangular
+                        </h3>
+                        
+                        <div class="w-full h-64 sm:h-80 rounded-2xl overflow-hidden shadow-md border border-stone-200 bg-stone-100">
+                            <img src="https://images.unsplash.com/photo-1524661135339-9140b0078723?auto=format&fit=crop&w=1200&q=80" alt="Plano Vial Finca" class="w-full h-full object-cover">
+                        </div>
+
+                        <a href="http://googleusercontent.com/maps.google.com/4" target="_blank" class="inline-flex items-center justify-center space-x-3 w-full bg-gradient-to-r from-fincaBlue to-fincaAqua text-white py-4 rounded-xl font-bold shadow-md hover:shadow-xl transition-all">
+                            <i data-lucide="navigation" class="w-5 h-5 animate-bounce"></i>
+                            <span>Navegar Ahora con Google Maps</span>
+                        </a>
+
+                        <div class="pt-6 border-t border-stone-200 space-y-3">
+                            <h4 class="font-bold text-stone-900 text-xs uppercase tracking-wider">Comunícate Directamente con Recepción</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <a href="https://wa.me/1234567890" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white border rounded-xl shadow-sm text-xs font-semibold hover:text-cacaoGreen hover:border-cacaoGreen transition-all"><i data-lucide="message-circle" class="text-cacaoGreen"></i> WhatsApp</a>
+                                <a href="https://instagram.com" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white border rounded-xl shadow-sm text-xs font-semibold hover:text-cacaoRed hover:border-cacaoRed transition-all"><i data-lucide="instagram" class="text-cacaoRed"></i> Instagram</a>
+                                <a href="https://facebook.com" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white border rounded-xl shadow-sm text-xs font-semibold hover:text-blue-600 hover:border-blue-600 transition-all"><i data-lucide="facebook" class="text-blue-600"></i> Facebook</a>
+                                <a href="mailto:fincaelbacao@gmail.com" class="flex items-center justify-center gap-2 p-3 bg-white border rounded-xl shadow-sm text-xs font-semibold hover:text-fincaBlue hover:border-fincaBlue transition-all"><i data-lucide="mail" class="text-fincaBlue"></i> Correo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <section class="bg-stone-50 py-16 border-t border-stone-200">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-extrabold text-stone-900 text-center mb-8">Preguntas Frecuentes (FAQ)</h2>
+            <div class="space-y-4">
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4 font-bold text-stone-800 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>¿Cuáles son los métodos de pago aceptados para las reservas?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-1" class="w-5 h-5 text-stone-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-1" class="hidden px-6 pb-4 text-stone-600 text-sm border-t border-stone-100 pt-3">
+                        Las reservas de estadías e inmersiones nocturnas se canalizan y garantizan por medio del portal oficial de Airbnb. Las compras internas admiten transferencias Nequi y Daviplata.
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4 font-bold text-stone-800 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>¿Qué tipo de alojamientos tienen disponibles actualmente?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-2" class="w-5 h-5 text-stone-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-2" class="hidden px-6 pb-4 text-stone-600 text-sm border-t border-stone-100 pt-3">
+                        Disponemos de cabañas rústicas de arquitectura tradicional e infraestructura Glamping de alta montaña. Todos cuentan con acomodación premium y servicio de baño privado independiente.
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-4 font-bold text-stone-800 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>¿Cuáles son las condiciones del servicio y políticas de cancelación?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-3" class="w-5 h-5 text-stone-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-3" class="hidden px-6 pb-4 text-stone-600 text-sm border-t border-stone-100 pt-3">
+                        Las anulaciones de reservas de hospedaje siguen rigurosamente el reglamento y los plazos estipulados en las cláusulas de nuestro perfil oficial en la plataforma de Airbnb.
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full text-left px-6 py-4 font-bold text-stone-800 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>¿Se admiten mascotas dentro del establecimiento agroturístico?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-4" class="w-5 h-5 text-stone-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-4" class="hidden px-6 pb-4 text-stone-600 text-sm border-t border-stone-100 pt-3">
+                        Sí, operamos bajo normativa Pet-Friendly. Los animales de compañía pueden permanecer en las áreas verdes abiertas bajo la total supervisión y recolección de residuos por parte de sus propietarios.
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                    <button onclick="toggleFaq(5)" class="w-full text-left px-6 py-4 font-bold text-stone-800 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>¿La finca cuenta con un parqueadero privado y vigilado?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-5" class="w-5 h-5 text-stone-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-5" class="hidden px-6 pb-4 text-stone-600 text-sm border-t border-stone-100 pt-3">
+                        Disponemos de un amplio estacionamiento privado dentro de los linderos de la finca. Este servicio de aparcamiento es gratuito para todos los usuarios inscritos en cualquiera de nuestras experiencias.
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                    <button onclick="toggleFaq(6)" class="w-full text-left px-6 py-4 font-bold text-stone-800 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>¿Qué vestimenta se aconseja para los recorridos de senderismo?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-6" class="w-5 h-5 text-stone-400 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-6" class="hidden px-6 pb-4 text-stone-600 text-sm border-t border-stone-100 pt-3">
+                        Se aconseja portar calzado de montaña o calzado cerrado antideslizante, ropa de algodón cómoda, repelente de insectos biodegradable, bloqueador solar y traje de baño en caso de usar los balnearios.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-2">
+                <span class="text-white font-bold text-lg">Jadin la Bernalera</span>
+                <span class="text-xs text-stone-500">| © 2026 Todos los derechos reservados.</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                 <a href="https://www.facebook.com/share/1BLCcwfjYS/" target="_blank" class="flex items-center gap-2 p-3 bg-white border rounded-xl shadow-sm text-xs font-semibold hover:text-blue-600 hover:border-blue-600 transition-all">
+    <i data-lucide="facebook" class="w-4 h-4 text-blue-600"></i> Facebook
+</a>
+
+<a href="https://www.instagram.com/jardindecacaolabernalera?utm_source=qr&igsh=ZDg5bnV2bzZsdjA5" target="_blank" class="flex items-center gap-2 p-3 bg-white border rounded-xl shadow-sm text-xs font-semibold hover:text-rose-600 hover:border-rose-600 transition-all">
+    <i data-lucide="instagram" class="w-4 h-4 text-rose-600"></i> Instagram
+</a>
+                <a href="mailto:jardindecacaolabernalera@gmail.com" class="p-2 bg-stone-800 hover:bg-fincaBlue text-white rounded-full transition-colors">
+    <i data-lucide="mail" class="w-5 h-5"></i>
+</a>
+                <a href="https://wa.me/573150455600" target="_blank" class="p-2 bg-stone-800 hover:bg-cacaoGreen text-white rounded-full transition-colors">
+    <i data-lucide="message-circle" class="w-5 h-5"></i>
+</a>
+</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="chat-window" class="hidden w-80 bg-white rounded-2xl shadow-2xl border border-stone-200 overflow-hidden mb-4 flex flex-col h-96 animate-fade-in">
+            <div class="bg-[#6A1626] p-4 text-white flex items-center justify-between">
+                <span class="font-bold text-sm">Asistente Virtual - El Bacao</span>
+                <button onclick="toggleChat()"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+            <div id="chat-messages" class="flex-grow p-4 overflow-y-auto text-xs bg-stone-50">
+                <div class="bg-white p-3 rounded-lg border shadow-sm">¡Hola! 🌿 Bienvenido a El Bacao. ¿Te gustaría consultar precios de estadías o agendar alguna actividad?</div>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="bg-gradient-to-r from-fincaBlue to-fincaAqua text-white p-4 rounded-full shadow-2xl"><i data-lucide="message-square"></i></button>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Control unificado de estados de carruseles en memoria de ejecución (5 imágenes cada uno)
+        let carouselSlides = {
+            main: 0,
+            album1: 0,
+            album2: 0,
+            album3: 0,
+            album4: 0,
+            album5: 0,
+            album6: 0
+        };
+
+        function moveSlide(carouselId, direction) {
+            const total = 5;
+            if (direction === 'next') {
+                carouselSlides[carouselId] = (carouselSlides[carouselId] + 1) % total;
+            } else {
+                carouselSlides[carouselId] = (carouselSlides[carouselId] - 1 + total) % total;
+            }
+            const track = document.getElementById(`${carouselId}-track`);
+            if (track) {
+                track.style.transform = `translateX(-${carouselSlides[carouselId] * 100}%)`;
+            }
+        }
+
+        function switchView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(`view-${viewName}`).classList.add('active');
+            
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.remove('text-fincaAqua', 'border-fincaAqua');
+                a.classList.add('text-stone-200', 'border-transparent');
+            });
+            
+            const activeNav = document.getElementById(`nav-${viewName}`);
+            if(activeNav) {
+                activeNav.classList.remove('text-stone-200', 'border-transparent');
+                activeNav.classList.add('text-fincaAqua', 'border-fincaAqua');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchServiceTab(tabName) {
+            document.querySelectorAll('.service-tab-content').forEach(c => c.classList.add('hidden'));
+            document.getElementById(`service-${tabName}`).classList.remove('hidden');
+            
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+                btn.classList.remove('border-cacaoGreen', 'text-cacaoGreen');
+                btn.classList.add('border-transparent', 'text-stone-500');
+            });
+            document.getElementById(`tab-${tabName}`).classList.add('border-cacaoGreen', 'text-cacaoGreen');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function toggleChat() {
+            document.getElementById('chat-window').classList.toggle('hidden');
+        }
+
+        function toggleFaq(id) {
+            document.getElementById(`faq-ans-${id}`).classList.toggle('hidden');
+            document.getElementById(`faq-icon-${id}`).classList.toggle('rotate-180');
+        }
+
+        function addToCartMock(productName) {
+            const message = encodeURIComponent(`Hola Finca El Bacao, deseo información del producto: ${productName}`);
+            window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
